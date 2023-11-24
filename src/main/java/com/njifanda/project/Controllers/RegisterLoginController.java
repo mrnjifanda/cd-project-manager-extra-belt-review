@@ -31,7 +31,7 @@ public class RegisterLoginController {
 
 		model.addAttribute("newUser", new User());
 		model.addAttribute("login", new LoginDto());
-		return "auth/register-and-login.jsp";
+		return "auth/register-and-login";
 	}
 	
 	@PostMapping("/auth/register")
@@ -45,7 +45,7 @@ public class RegisterLoginController {
         if(result.hasErrors()) {
 
             model.addAttribute("login", new LoginDto());
-            return "auth/register-and-login.jsp";
+            return "auth/register-and-login";
         }
 
         User register = this.userService.register(newUser, result);
@@ -53,7 +53,7 @@ public class RegisterLoginController {
         if(register == null) {
 
             model.addAttribute("login", new LoginDto());
-            return "auth/register-and-login.jsp";
+            return "auth/register-and-login";
         }
         
         session.setAttribute("auth", register);
@@ -71,7 +71,7 @@ public class RegisterLoginController {
 		if (result.hasErrors()) {
 
 			model.addAttribute("newUser", new User());
-			return "auth/register-and-login.jsp";
+			return "auth/register-and-login";
 		}
 		
 		User user = this.userService.login(login, result);
@@ -79,7 +79,7 @@ public class RegisterLoginController {
 		if (user == null) {
 
 			model.addAttribute("newUser", new User());
-			return "auth/register-and-login.jsp";
+			return "auth/register-and-login";
 		}
 
         session.setAttribute("auth", user);

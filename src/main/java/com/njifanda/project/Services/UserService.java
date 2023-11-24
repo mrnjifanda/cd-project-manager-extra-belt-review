@@ -1,5 +1,7 @@
 package com.njifanda.project.Services;
 
+import java.util.Optional;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,16 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	public User findById(Long id) {
+
+		Optional<User> findUser = this.userRepository.findById(id);
+		if (findUser.isPresent()) {
+			return (User) findUser.get();
+		}
+
+		return null;
+	}
 	
 	public User register(User newUser, BindingResult result) {
 
@@ -38,8 +50,8 @@ public class UserService {
     	newUser.setPassword(hashed);
     	return this.userRepository.save(newUser);
 	}
-	
-	public User login (LoginDto login, BindingResult result) {
+
+	public User login(LoginDto login, BindingResult result) {
 
     	User user = this.userRepository.findByEmail(login.getEmail());
     	if (user != null) {

@@ -10,37 +10,40 @@
 	</head>
 	<body>
 		<div class="container mt-5">
-			<h1>Create a project</h1>
+			<div class="card p-5">
+				<h1 class="mb-5">Create a project</h1>
 			
-			<form:form action="/projects/new" method="post" modelAttribute="project">
-				<div class="row mb-2">
-					<form:label class="col-sm-3 col-form-label" path="title">Project Title :</form:label>
-					<div class="col-sm-9">
-	                	<form:input class="form-control" path="title"/>
-	                </div>
-	                <form:errors class="col-12 text-danger" path="title"/>
-				</div>
-
-				<div class="row mb-2">
-					<form:label class="col-sm-3 col-form-label" path="description">Project Description :</form:label>
-					<div class="col-sm-9">
-	                	<form:input class="form-control" path="description"/>
-	                </div>
-	                <form:errors class="col-12 text-danger" path="description"/>
-				</div>
-				
-				<div class="row mb-2">
-					<form:label class="col-sm-3 col-form-label" path="dueDate">Due Date </form:label>
-					<div class="col-sm-9">
-	                	<form:input type="date" class="form-control" path="dueDate"/>
-	                </div>
-	                <form:errors class="col-12 text-danger" path="dueDate"/>
-				</div>
-						
-				<div class="d-flex justify-content-end mt-5">
-					<input type="submit" class="btn btn-primary" value="Submit" />
-				</div>
-			</form:form>
+				<form:form action="/projects/new" method="post" modelAttribute="project">
+					<div class="row mb-2">
+						<form:label class="col-sm-3 col-form-label" path="title">Project Title :</form:label>
+						<div class="col-sm-9">
+		                	<form:input class="form-control" path="title"/>
+		                </div>
+		                <form:errors class="col-12 text-danger" path="title"/>
+					</div>
+	
+					<div class="row mb-2">
+						<form:label class="col-sm-3 col-form-label" path="description">Project Description :</form:label>
+						<div class="col-sm-9">
+		                	<form:input class="form-control" path="description"/>
+		                </div>
+		                <form:errors class="col-12 text-danger" path="description"/>
+					</div>
+					
+					<div class="row mb-2">
+						<form:label class="col-sm-3 col-form-label" path="dueDate">Due Date </form:label>
+						<div class="col-sm-9">
+		                	<form:input type="date" class="form-control" path="dueDate"/>
+		                </div>
+		                <form:errors class="col-12 text-danger" path="dueDate"/>
+					</div>
+							
+					<div class="d-flex justify-content-around mt-5">
+						<input type="reset" class="btn btn-secondary" value="Cancel" />
+						<input type="submit" class="btn btn-primary" value="Submit" />
+					</div>
+				</form:form>
+			</div>
 		</div>
 	</body>
 </html>

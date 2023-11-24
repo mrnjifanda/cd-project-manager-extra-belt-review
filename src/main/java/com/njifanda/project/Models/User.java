@@ -12,6 +12,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -52,6 +55,32 @@ public class User {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projects;
+   
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "users_teams", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "team_id")
+    )
+    private List<Team> teams;
+    
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
+	public User() {}
+	
+	public User(String firstName, String lastName, String email, String password, String confirm) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.confirm = confirm;
+	}
 
     public Long getId() {
 		return id;
@@ -131,16 +160,6 @@ public class User {
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-
-	public User() {}
-	
-	public User(String firstName, String lastName, String email, String password, String confirm) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.confirm = confirm;
-	}
 	
     @PrePersist
     protected void onCreate() {

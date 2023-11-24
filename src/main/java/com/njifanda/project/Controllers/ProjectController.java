@@ -35,7 +35,7 @@ public class ProjectController {
 		}
 		
 		model.addAttribute("project", new Project());
-		return "projects/new.jsp";
+		return "projects/new";
 	}
 	
 	@PostMapping("/new")
@@ -53,13 +53,13 @@ public class ProjectController {
 
 		if (result.hasErrors()) {
 
-			return "projects/new.jsp";
+			return "projects/new";
 		}
-		
-		Project newProject = this.projectService.create(user, project, result);
+
+		Project newProject = this.projectService.create(user.getId(), project, result);
 		if (newProject == null) {
 
-			return "projects/new.jsp";
+			return "projects/new";
 		}
 
 		return "redirect:/dashboard";
